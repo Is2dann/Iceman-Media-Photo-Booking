@@ -74,6 +74,36 @@ body {
     color: white;
 }
 
+/* Registration Section */
+.registration-section {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.form-control {
+    background-color: var(--background-color);
+    border: none;
+}
+
+.form-control:focus {
+    background-color: var(--background-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(139, 69, 19, 0.25);
+}
+
+.btn-custom {
+    background-color: var(--accent-color);
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
 /* Footer Styles */
 .footer {
     background-color: var(--footer-bg);
