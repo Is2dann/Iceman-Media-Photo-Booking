@@ -1,8 +1,47 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<h2 class="text-center">Welcome to Iceman Media</h2>
-<p class="text-center">This will be the landing page once it's ready. Hopefully!</p>
+<section class="container py-5">
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="gallery-item">
+                <img src="{% static 'assets/showcase/animal1.JPG' %}" alt="Pet & Wildlife" class="img-fluid">
+                <div class="explanation">Pet & Wildlife</div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="gallery-item">
+                <img src="{% static 'assets/showcase/car2.jpeg' %}" alt="Vehicle & Transportation" class="img-fluid">
+                <div class="explanation">Vehicle & Transportation</div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="gallery-item">
+                <img src="{% static 'assets/showcase/event4.jpg' %}" alt="Event" class="img-fluid">
+                <div class="explanation">Event</div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="gallery-item">
+                <img src="{% static 'assets/showcase/landscape5.JPG' %}" alt="Landscapes" class="img-fluid">
+                <div class="explanation">Landcapes</div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="gallery-item">
+                <img src="{% static 'assets/showcase/wedding1.jpg' %}" alt="Weddings & Ceremonies" class="img-fluid">
+                <div class="explanation">Weddings & Ceremonies</div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="gallery-item">
+                <img src="{% static 'assets/showcase/workplace4.jpg' %}" alt="Workplaces" class="img-fluid">
+                <div class="explanation">Workplaces</div>
+            </div>
+        </div>        
+    </div>
+</section>
 
 {% endblock %}
