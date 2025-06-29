@@ -1,0 +1,76 @@
+:root {
+    --primary-color: #2c1810;
+    --secondary-color: #4a2811;
+    --accent-color: #8b4513;
+    --background-color: #f4e4bc;
+    --text-color: #463e3f;
+    --footer-bg: #1a0f0a;
+    --social-hover: #8b4513;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: rgba(44, 24, 16, 0.95);
+    backdrop-filter: blur(5px);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem !important;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: calc(70vh - 90px);
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    background-size: cover;
+    background-position: center;
+}
+
+.row {
+    padding-top: 30px;
+}
+
+
+
+/* Footer Styles */
+.footer {
+    background-color: var(--footer-bg);
+}
+
+.social-link {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--social-hover);
+}
+
+.copyright {
+    color: #8b4513;
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+}
