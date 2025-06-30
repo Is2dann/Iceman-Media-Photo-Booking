@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">{{ category.name }} Gallery</h2>
+<div class="row g-4">
+    {% for image in images %}
+    <div class="col-md-4">
+        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modal-{{ image.id }}">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid">
+            <div class="explanation">{{ image.title }}</div>
+        </div>
+    </div>
+
+    <!-- Modal for full size image opening -->
+    <div class="modal fade" id="modal-{{ image.id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ image.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="imageModalLabel-{{ image.id }}">{{ image.title }}</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The 'Empty' method will show the fallback message if the category is empty. -->
+    {% empty %}  
+    <p class="text-center text-muted">No images in this category yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

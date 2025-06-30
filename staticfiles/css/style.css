@@ -26,6 +26,11 @@ body {
     letter-spacing: 2px;
 }
 
+.navbar-user {
+    padding: 0.5rem 1rem;
+    color: var(--background-color);
+}
+
 .nav-link {
     padding: 0.5rem 1rem !important;
     border-radius: 4px;
@@ -39,13 +44,18 @@ body {
 /* Hero Section */
 .hero-section {
     min-height: calc(70vh - 90px);
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    background-image: url(/static/assets/showcase/landscape5.JPG);
     background-size: cover;
     background-position: center;
 }
 
 .row {
     padding-top: 30px;
+}
+
+.welcome-message {
+    text-decoration: none;
+    color: var(--accent-color);
 }
 
 /* Gallery Styles */
@@ -68,10 +78,25 @@ body {
 }
 
 .explanation {
+    background-color: var(--primary-color);
     position: absolute;
     top: 8px;
     left: 16px;
+    width: 100%;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+    padding-left: 25%;
     color: white;
+}
+
+.modal-content {
+    background-color: #222;
+    border-radius: 8px;
+}
+
+.modal-body img {
+    max-height: 75vh;
+    object-fit: contain;
 }
 
 /* Registration Section */

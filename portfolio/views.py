@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import PortfolioCategory
 
 # Create your views here.
@@ -16,3 +16,12 @@ def portfolio(request):
 
     return render(
         request, 'portfolio/portfolio.html', {'showcase_items': showcase_items})
+
+
+def category_gallery(request, slug):
+    category = get_object_or_404(PortfolioCategory, slug=slug)
+    images = category.images.all()
+    return render(request, 'portfolio/category_gallery.html', {
+        'category': category,
+        'images': images
+    })

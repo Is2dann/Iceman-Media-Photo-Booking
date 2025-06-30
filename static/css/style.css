@@ -89,6 +89,16 @@ body {
     color: white;
 }
 
+.modal-content {
+    background-color: #222;
+    border-radius: 8px;
+}
+
+.modal-body img {
+    max-height: 75vh;
+    object-fit: contain;
+}
+
 /* Registration Section */
 .registration-section {
     background-color: var(--primary-color);

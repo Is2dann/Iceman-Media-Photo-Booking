@@ -7,10 +7,12 @@
 <div class="row g-4">
     {% for item in showcase_items %}
     <div class="col-md-6 col-lg-4">
-        <div class="gallery-item">
-            <img src="{{ item.image.image.url }}" alt="{{ item.category.name }}" class="img-fluid">
-            <div class="explanation">{{ item.category.name }}</div>
-        </div>
+        <a href="{% url 'category_gallery' item.category.slug %}">
+            <div class="gallery-item">
+                <img src="{{ item.image.image.url }}" alt="{{ item.category.name }}" class="img-fluid">
+                <div class="explanation">{{ item.category.name }}</div>
+            </div>
+        </a>
     </div>
     {% endfor %}
 </div>
