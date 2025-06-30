@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import PortfolioCategory, PortfolioImage, Comment, Like
@@ -56,3 +57,38 @@ def add_comment(request, image_id):
                 image=image, user=request.user, content=content)
     return HttpResponseRedirect(
         request.META.get('HTTP_REFERER', reverse('portfolio')))
+
+
+@login_required
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    """
+    Only allow the user who commented to edit it
+    """
+    if comment.user != request.user:
+        messages.error(request, "You are not allowed to edit this comment.")
+        
+    if request.method == "POST":
+        new_content = request.POST.get('content', '').strip()
+        if new_content:
+            comment.content = new_content
+            comment.save()
+            messages.success(request, "Your comment has been updated.")
+        else:
+            messages.error(request, "Comment cannot be empty.")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('portfolio')))
+
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    """
+    Only allow the user who commented to delete it
+    """
+    if comment.user == request.user:
+        comment.delete()
+        messages.success(request, "Your comment was deleted.")
+    else:
+        messages.error(request, "You are not authorized to delete this comment.")
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('portfolio')))
