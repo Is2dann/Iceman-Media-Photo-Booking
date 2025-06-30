@@ -6,13 +6,57 @@
 <h2 class="text-center mb-4">{{ category.name }} Gallery</h2>
 <div class="row g-4">
     {% for image in images %}
-    <div class="col-md-4">
-        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modal-{{ image.id }}">
-            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid">
-            <div class="explanation">{{ image.title }}</div>
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100">
+            <!-- Image preview -->
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modal-{{ image.id }}">
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid">
+                <div class="explanation">{{ image.title }}</div>
+            </div>
+            
+            <!-- Interaction area -->
+            <div class="card-body small">                
+                <!-- Like button -->
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'like_photo' image.id %}" class="mb-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                        🩷 {{ image.likes.count }}
+                    </button>
+                </form>
+                {% else %}
+                    <p class="small text-muted">Log in to like</p>
+                {% endif %}
+
+                <!-- Comments -->
+                <strong>Comments:</strong>
+                <ul class="list-unstyled small mb-2" style="max-height: 100px; overflow-y: auto;">
+                    {% for comment in image.comments.all %}
+                    <li>
+                        <small><strong>{{ comment.user.username }}</strong> on {{ comment.created_at|date:"Y-m-d H:i" }}</small><br>
+                            {{ comment.content }}
+                    </li>
+                    {% empty %}
+                    <li class="text-muted">No comments yet. Be the first one!</li>
+                    {% endfor %}
+                </ul>
+        
+                <!-- Comment form -->
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'add_comment' image.id %}">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        <textarea name="content" rows="2" class="form-control form-control-sm" placeholder="Add a comment..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-secondary">Comment</button>
+                </form>
+                {% else %}
+                    <p class="text-muted">Log in to comment</p>
+                {% endif %}
+            </div>
         </div>
     </div>
-
+    
     <!-- Modal for full size image opening -->
     <div class="modal fade" id="modal-{{ image.id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ image.id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -27,9 +71,10 @@
             </div>
         </div>
     </div>
+    
     <!-- The 'Empty' method will show the fallback message if the category is empty. -->
     {% empty %}  
-    <p class="text-center text-muted">No images in this category yet.</p>
+        <p class="text-center text-muted">No images in this category yet.</p>
     {% endfor %}
 </div>
 
