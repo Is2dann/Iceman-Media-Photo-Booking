@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 class="mb-4 text-center">Services & Pricing</h2>
+<h4 class="mb-4 text-center">While every photoshoot tailored to the subject and their specific needs, my standard pricing structure is as follows:</h4>
+<div class="row">
+    {% for service in services %}
+    <div class="col-md-6 mb-4">
+        <div class="p-4 border rounded shadow-sm h-100 bg-dark text-light">
+            <h4>{{ service.title }}</h4>
+            <p>{{ service.description }}</p>
+            <p><strong>Price:</strong> £{{ service.price }}</p>
+            <p><strong>Process Time:</strong> {{ service.duration }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <p>No services found.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

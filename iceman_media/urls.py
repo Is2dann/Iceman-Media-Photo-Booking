@@ -28,5 +28,6 @@ urlpatterns = [
     path('favicon.ico', RedirectView.as_view(
         url=staticfiles_storage.url('assets/favicon/favicon.ico'))),
     path('portfolio/', include('portfolio.urls')),
+    path('services/', include('services.urls')),
     path('', include('home.urls'), name='home-urls'),
 ]
