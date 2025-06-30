@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">Explore My Work</h2>
+<div class="row g-4">
+    {% for item in showcase_items %}
+    <div class="col-md-6 col-lg-4">
+        <div class="gallery-item">
+            <img src="{{ item.image.image.url }}" alt="{{ item.category.name }}" class="img-fluid">
+            <div class="explanation">{{ item.category.name }}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

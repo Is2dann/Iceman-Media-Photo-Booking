@@ -1,6 +1,7 @@
 {% load static %}
 
 {% url 'index' as index_url %}
+{% url 'portfolio' as portfolio_url %}
 {% url 'account_login' as login.url %}
 
 <!DOCTYPE html>
@@ -41,7 +42,7 @@
                         <a class="nav-link {% if request.path == index_url %}active{% endif %}" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Contact & Booking</a></li>
@@ -57,7 +58,7 @@
 
     <!-- Hero Section -->
     <section class="hero-section d-flex align-items-center justify-content-center">
-        <div class="container text-center">
+        <div class="container text-start">
             <h1 class="display-3 text-white mb-3">Iceman Media Photography</h1>
             <p class="lead text-light">Capturing life's precious moments wherever I can.</p>
         </div>

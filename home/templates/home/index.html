@@ -4,9 +4,9 @@
 {% block content %}
 
 <section class="container py-5">
-        <div class="text-center">
+        <div class="text-end">
             <h1 class="display-3 mb-3">Well Hello There!</h1>
-            <p class="lead">I am glad you interested in my work. Here is a little snap. More in my <a class="welcome-message" href="#">Portfolio</a>!</p>
+            <p class="lead">I am glad you interested in my work. Here is a little snap. More in my <a class="welcome-message" href="{% url 'portfolio' %}">Portfolio</a>!</p>
             <p class="lead">If you would like to comment or like my photos or more importantly, you wish to book a session.
                  Please <a class="welcome-message" href="{% url 'register' %}">register</a> or <a class="welcome-message" href="{% url 'login' %}">login!</a> Thank you</p>
         </div>

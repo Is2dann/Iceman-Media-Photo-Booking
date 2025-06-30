@@ -44,7 +44,7 @@ body {
 /* Hero Section */
 .hero-section {
     min-height: calc(70vh - 90px);
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    background-image: url(/static/assets/showcase/landscape5.JPG);
     background-size: cover;
     background-position: center;
 }

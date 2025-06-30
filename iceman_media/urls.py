@@ -25,5 +25,6 @@ urlpatterns = [
     # this path ensures favicon will show on the live website (from stackoverflow)
     path('favicon.ico', RedirectView.as_view(
         url=staticfiles_storage.url('assets/favicon/favicon.ico'))),
+    path('portfolio/', include('portfolio.urls')),
     path('', include('home.urls'), name='home-urls'),
 ]
