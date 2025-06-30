@@ -26,6 +26,11 @@ body {
     letter-spacing: 2px;
 }
 
+.navbar-user {
+    padding: 0.5rem 1rem;
+    color: var(--background-color);
+}
+
 .nav-link {
     padding: 0.5rem 1rem !important;
     border-radius: 4px;
@@ -46,6 +51,11 @@ body {
 
 .row {
     padding-top: 30px;
+}
+
+.welcome-message {
+    text-decoration: none;
+    color: var(--accent-color);
 }
 
 /* Gallery Styles */

@@ -20,7 +20,10 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
+    # this path ensures favicon will show on the live website (from stackoverflow)
+    path('favicon.ico', RedirectView.as_view(
+        url=staticfiles_storage.url('assets/favicon/favicon.ico'))),
     path('', include('home.urls'), name='home-urls'),
-    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('assets/favicon/favicon.ico'))),
 ]

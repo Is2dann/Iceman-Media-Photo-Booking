@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="registration-section p-4">
+            <h2 class="text-center mb-4">Create Your Account!</h2>
+            <p class="text-center mb-4">Register to view gallery, like and comment and most importantly to book your session!</p>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-custom">Register Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
