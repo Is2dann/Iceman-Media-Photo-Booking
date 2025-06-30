@@ -44,7 +44,7 @@ def toggle_like(request, image_id):
         like.delete()
 
     return HttpResponseRedirect(
-        request.META.get('HTTP_REFERER', reverse('portfolio')))
+        f"{request.META.get('HTTP_REFERER', '')}#image{image.id}")
 
 
 @login_required
@@ -56,7 +56,7 @@ def add_comment(request, image_id):
             Comment.objects.create(
                 image=image, user=request.user, content=content)
     return HttpResponseRedirect(
-        request.META.get('HTTP_REFERER', reverse('portfolio')))
+        f"{request.META.get('HTTP_REFERER', '')}#image{image_id}")
 
 
 @login_required
@@ -76,7 +76,8 @@ def edit_comment(request, comment_id):
             messages.success(request, "Your comment has been updated.")
         else:
             messages.error(request, "Comment cannot be empty.")
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('portfolio')))
+        return HttpResponseRedirect(
+            f"{request.META.get('HTTP_REFERER', '')}#image{comment.image.id}")
 
 
 @login_required
@@ -91,4 +92,5 @@ def delete_comment(request, comment_id):
     else:
         messages.error(request, "You are not authorized to delete this comment.")
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('portfolio')))
+    return HttpResponseRedirect(
+        f"{request.META.get('HTTP_REFERER', '')}#image{comment.image.id}")

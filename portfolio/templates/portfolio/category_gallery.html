@@ -9,6 +9,7 @@
     <div class="col-md-6 col-lg-4">
         <div class="card h-100">
             <!-- Image preview -->
+            <a name="image{{ image.id }}"></a>
             <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modal-{{ image.id }}">
                 <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid">
                 <div class="explanation">{{ image.title }}</div>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-4 text-center mb-4 mb-md-0">
+        <img src="{% static 'assets/images/notme.png' %}"
+            alt="This is not me!"
+            class="img-fluid rounded-circle shadow"
+            style="max-width: 250px;">
+    </div>
+    <div class="col-md-8">
+        <h2 class="mb-3">So, now about me a little bit...</h2>
+        <p class="lead">
+            Hi, I'm Daniel - the creative behind Iceman Media Photography. 
+            I capture moments that matter, whether it's roaring engines, soft sunlight, or joyful faces.
+            Photography is my passion and storytelling is my lens.
+        </p>
+        <p>
+            I specialise in a wide range of photography 
+            from commercial and vehicle shoots to intimate family sessions and nature landscapes. 
+            I bring years of experience and a personal approach to every project I take on.
+        </p>
+    </div>
+</div>
+
+{% endblock %}
