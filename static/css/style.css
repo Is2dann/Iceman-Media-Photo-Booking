@@ -68,9 +68,14 @@ body {
 }
 
 .explanation {
+    background-color: var(--primary-color);
     position: absolute;
     top: 8px;
     left: 16px;
+    width: 100%;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+    padding-left: 25%;
     color: white;
 }
 
