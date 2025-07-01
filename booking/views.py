@@ -24,7 +24,8 @@ def book_photoshoot(request):
                 booking.save()
                 messages.success(
                     request,
-                    "Your booking request has been submitted. I endeavor to respond within 2 days.")
+                    "Your booking request has been submitted." \
+                    "I endeavor to respond within 2 days.")
                 return redirect('book_photoshoot')
         else:
             print("Form errors:", form.errors)
@@ -49,4 +50,5 @@ def get_booked_dates(request):
 @staff_member_required
 def manage_bookings(request):
     bookings = Booking.objects.all().order_by('-date', '-time')
-    return render(request, 'booking/manage_bookings.html', {'bookings': bookings})
+    return render(
+        request, 'booking/manage_bookings.html', {'bookings': bookings})

@@ -8,6 +8,7 @@ class PortfolioImageInline(admin.TabularInline):
     model = PortfolioImage
     extra = 1
 
+
 @admin.register(PortfolioCategory)
 class PortfolioCategoryAdmin(admin.ModelAdmin):
     inlines = [PortfolioImageInline]

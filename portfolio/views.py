@@ -20,7 +20,8 @@ def portfolio(request):
             showcase_items.append({'category': category, 'image': image})
 
     return render(
-        request, 'portfolio/portfolio.html', {'showcase_items': showcase_items})
+        request, 'portfolio/portfolio.html', {
+            'showcase_items': showcase_items})
 
 
 def category_gallery(request, slug):
@@ -67,7 +68,7 @@ def edit_comment(request, comment_id):
     """
     if comment.user != request.user:
         messages.error(request, "You are not allowed to edit this comment.")
-        
+
     if request.method == "POST":
         new_content = request.POST.get('content', '').strip()
         if new_content:
@@ -90,7 +91,8 @@ def delete_comment(request, comment_id):
         comment.delete()
         messages.success(request, "Your comment was deleted.")
     else:
-        messages.error(request, "You are not authorized to delete this comment.")
+        messages.error(
+            request, "You are not authorized to delete this comment.")
 
     return HttpResponseRedirect(
         f"{request.META.get('HTTP_REFERER', '')}#image{comment.image.id}")

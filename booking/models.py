@@ -50,4 +50,6 @@ class Booking(models.Model):
         unique_together = ('date', 'time')  # This prevents double booking
 
     def __str__(self):
-        return f"{self.user.username} - {self.date} {self.time} - {self.photoshoot_type}"
+        return f"{
+            self.user.username} - {
+                self.date} {self.time} - {self.photoshoot_type}"

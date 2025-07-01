@@ -13,7 +13,7 @@ class BookingAdmin(admin.ModelAdmin):
         'created_on'
     )
     list_filter = ('status', 'date', 'photoshoot_type', 'is_approved')
-    # This way bookings can be approved and messaged 
+    # This way bookings can be approved and messaged
     # straight from admin table, don't need to open them.
     list_editable = (
         'status',

@@ -7,7 +7,8 @@ import datetime
 
 class BookingModelTests(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='password123')
+        self.user = User.objects.create_user(
+            username='testuser', password='password123')
 
     def test_booking_creation(self):
         """Check booking model string format"""
@@ -20,13 +21,16 @@ class BookingModelTests(TestCase):
             time=datetime.time(10, 0),
             photoshoot_type="family",
         )
-        expected_str = f"{self.user.username} - {booking.date} {booking.time} - {booking.photoshoot_type}"
+        expected_str = f"{
+            self.user.username} - {
+                booking.date} {booking.time} - {booking.photoshoot_type}"
         self.assertEqual(str(booking), expected_str)
 
 
 class BookingViewsTests(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='viewer', password='pass123')
+        self.user = User.objects.create_user(
+            username='viewer', password='pass123')
         self.client.login(username='viewer', password='pass123')
 
     def test_booking_page_loads(self):
@@ -41,7 +45,9 @@ class BookingViewsTests(TestCase):
             'full_name': 'Client One',
             'email': 'client@example.com',
             'phone': '',
-            'date': (datetime.date.today() + datetime.timedelta(days=1)).isoformat(),
+            'date': (
+                datetime.date.today() + datetime.timedelta(
+                    days=1)).isoformat(),
             'time': datetime.time(12, 0),
             'photoshoot_type': 'Events',
         })
