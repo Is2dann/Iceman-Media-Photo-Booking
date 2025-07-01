@@ -6,8 +6,23 @@ from django.contrib.auth.models import User
 
 class Booking(models.Model):
     """
-    Stores a single booking entry related to `:model:auth.User`
+    Stores a single booking request submitted by a user.
+
+    Related to:
+        - :model:`auth.User`
+
+    Includes details such as:
+        - Full name, email, phone number
+        - Photoshoot type from a predefined list
+        - Preferred date and time
+        - Optional message to the photographer
+        - Approval status and admin feedback
+
+    Enforces:
+        - Unique booking per date and time
+        - Admin-only status update workflow
     """
+   
     PHOTOSHOOT_CHOICES = [
         ('Animals', 'Pets & Wildlife'),
         ('Children', 'Children'),

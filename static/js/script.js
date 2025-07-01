@@ -1,3 +1,4 @@
+// Portfolio - category_gallery.html
 function toggleEditForm(commentId) {
     const form = document.getElementById(`edit-form-${commentId}`);
     if (form.style.display === "none") {

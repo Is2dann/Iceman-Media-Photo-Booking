@@ -9,10 +9,17 @@ from .models import PortfolioCategory, PortfolioImage, Comment, Like
 
 
 def portfolio(request):
+    """
+    Displays the main portfolio page with a showcase grid.
+
+    - Retrieves all portfolio categories and their associated images.
+    - For each category, selects the first image as a visual representative.
+    - Passes category-image pairs to the template for display.
+
+    Template: portfolio/portfolio.html
+    Context: {'showcase_items': [{'category': ..., 'image': ...}, ...]}
+    """
     categories = PortfolioCategory.objects.prefetch_related('images')
-    """
-    Grab first image of each category (if available)
-    """
     showcase_items = []
     for category in categories:
         image = category.images.first()
@@ -25,6 +32,15 @@ def portfolio(request):
 
 
 def category_gallery(request, slug):
+    """
+    Displays all images in a given portfolio category.
+
+    - Uses the slug to find the matching PortfolioCategory.
+    - Fetches all images related to that category.
+
+    Template: portfolio/category_gallery.html
+    Context: {'category': category, 'images': images}
+    """
     category = get_object_or_404(PortfolioCategory, slug=slug)
     images = category.images.all()
 
@@ -36,6 +52,15 @@ def category_gallery(request, slug):
 
 @login_required
 def toggle_like(request, image_id):
+    """
+    Toggles a 'like' for a portfolio image.
+
+    - If the user has not liked the image, a new Like is created.
+    - If a like already exists, it is removed.
+    - Redirects the user back to the referring page with anchor to the image.
+
+    Redirect: Back to the same category page with anchor (e.g. #image3)
+    """
     image = get_object_or_404(PortfolioImage, id=image_id)
     like, created = Like.objects.get_or_create(user=request.user, image=image)
 
@@ -50,6 +75,15 @@ def toggle_like(request, image_id):
 
 @login_required
 def add_comment(request, image_id):
+    """
+    Adds a new comment to a portfolio image.
+
+    - Accepts POST data with comment content.
+    - Creates a new Comment instance if content is valid.
+    - Redirects back to the referring page anchored to the image.
+
+    Redirect: Back to the same category page with anchor (e.g. #image3)
+    """
     if request.method == "POST":
         image = get_object_or_404(PortfolioImage, id=image_id)
         content = request.POST.get('content')
@@ -62,10 +96,17 @@ def add_comment(request, image_id):
 
 @login_required
 def edit_comment(request, comment_id):
+    """
+    Allows a user to edit their own comment.
+
+    - Verifies that the logged-in user is the owner of the comment.
+    - Updates the comment content on POST if non-empty.
+    - Displays appropriate success or error messages.
+
+    Redirect: Back to the same category page with anchor (e.g. #image3)
+    """
     comment = get_object_or_404(Comment, id=comment_id)
-    """
-    Only allow the user who commented to edit it
-    """
+    
     if comment.user != request.user:
         messages.error(request, "You are not allowed to edit this comment.")
 
@@ -83,10 +124,17 @@ def edit_comment(request, comment_id):
 
 @login_required
 def delete_comment(request, comment_id):
+    """
+    Allows a user to delete their own comment.
+
+    - Verifies ownership before deletion.
+    - Displays confirmation or error messages.
+    - Redirects back to the same category page with anchor.
+
+    Redirect: Back to the same category page with anchor (e.g. #image3)
+    """
     comment = get_object_or_404(Comment, id=comment_id)
-    """
-    Only allow the user who commented to delete it
-    """
+
     if comment.user == request.user:
         comment.delete()
         messages.success(request, "Your comment was deleted.")

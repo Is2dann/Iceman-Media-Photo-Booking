@@ -14,6 +14,18 @@ def index(request):
 
 
 def register(request):
+    """
+    Handles new user registration.
+
+    - Displays a registration form (GET).
+    - On POST, validates and creates a new user account.
+    - Automatically logs in the user on successful registration.
+    - Displays success or error messages accordingly.
+
+    Template: home/register.html
+    Context: {'form': CustomRegisterForm}
+    Redirect: to 'index' on successful registration
+    """
     if request.method == 'POST':
         form = CustomRegisterForm(request.POST)
         if form.is_valid():
@@ -34,6 +46,18 @@ def register(request):
 
 
 def user_login(request):
+    """
+    Handles user login.
+
+    - Displays a login form (GET).
+    - On POST, authenticates the user credentials.
+    - Logs in the user and shows success message on success.
+    - Displays error messages on failure.
+
+    Template: home/login.html
+    Context: {'form': AuthenticationForm}
+    Redirect: to 'index' on successful login
+    """
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -53,6 +77,14 @@ def user_login(request):
 
 
 def user_logout(request):
+    """
+    Logs the user out and redirects to the homepage.
+
+    - Clears the session and logs the user out.
+    - Displays an informational message after logout.
+
+    Redirect: to 'index' after logout
+    """
     logout(request)
     messages.info(
         request,

@@ -18,9 +18,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-<!-- This fetches booked dates from the backend then disables them in the date picker -->
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+        // This fetches booked dates from the backend then disables them in the date picker
+document.addEventListener("DOMContentLoaded", function() {
         fetch("{% url 'booked_dates' %}")
             .then(response => response.json())
             .then(data => {
@@ -40,6 +40,6 @@
                 });
             });
         });
-    </script>
+</script>
 
 {% endblock %}

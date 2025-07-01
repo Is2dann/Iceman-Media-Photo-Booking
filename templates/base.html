@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iceman Media Photography & Booking</title>
     <!-- Bootstrap -->
@@ -23,7 +23,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'assets/favicon/site.webmanifest' %}">
-    <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon/favicon.ico' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon/favicon.ico' %}">
 </head>
 <body>
     <!-- Navbar -->
@@ -38,37 +38,34 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
-                            <span class="navbar-user">Hi, {{ user.username }}</span>
+                            <div class="navbar-user">Hi, {{ user.username }}</div>
                         {% else %}
-                            <span class="navbar-user">Hi, stranger.</span>
+                            <div class="navbar-user">Hi, stranger.</div>
                     {% endif %}
 
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == index_url %}active{% endif %}" href="{% url 'index' %}">Home</a>
+                        <a class="nav-link {% if request.path == index_url %}active" aria-current="page{% endif %}" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == about_url %}active{% endif %}" href="{% url 'about' %}">About</a>
+                        <a class="nav-link {% if request.path == about_url %}active" aria-current="page{% endif %}" href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == portfolio_url %}active{% endif %}" href="{% url 'portfolio' %}">Portfolio</a>
+                        <a class="nav-link {% if request.path == portfolio_url %}active" aria-current="page{% endif %}" href="{% url 'portfolio' %}">Portfolio</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == contact_url %}active{% endif %}" href="#">Contact</a>
-                    </li>
-
+                    
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == services_url %}active{% endif %}" href="{% url 'services' %}">Services</a>
+                            <a class="nav-link {% if request.path == services_url %}active" aria-current="page{% endif %}" href="{% url 'services' %}">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == book_photoshoot_url %}active{% endif %}" href="{% url 'book_photoshoot' %}">Booking</a>
+                            <a class="nav-link {% if request.path == book_photoshoot_url %}active" aria-current="page{% endif %}" href="{% url 'book_photoshoot' %}">Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == my_bookings_url %}active{% endif %}" href="{% url 'my_bookings' %}">My Bookings</a>
+                            <a class="nav-link {% if request.path == my_bookings_url %}active" aria-current="page{% endif %}" href="{% url 'my_bookings' %}">My Bookings</a>
                         </li>
                             {% if user.is_authenticated and user.is_staff %}
                                 <li class="nav-item">
-                                    <a class="nav-link {% if request.path == manage_bookings_url %}active{% endif %}" href="{% url 'manage_bookings' %}">Manage Bookings</a>
+                                    <a class="nav-link {% if request.path == manage_bookings_url %}active" aria-current="page{% endif %}" href="{% url 'manage_bookings' %}">Manage Bookings</a>
                                 </li>
                             {% endif %}
                         <li class="nav-item">
