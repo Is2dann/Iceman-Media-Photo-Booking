@@ -62,6 +62,9 @@
                         <a class="nav-link {% if request.path == book_photoshoot_url %}active{% endif %}" href="{% url 'book_photoshoot' %}">Booking</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {% if request.path == my_bookings_url %}active{% endif %}" href="{% url 'my_bookings' %}">My Bookings</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
                     {% else %}

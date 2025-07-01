@@ -20,6 +20,12 @@ class Booking(models.Model):
         ('Wedding', 'Weddings & Ceremonies'),
     ]
 
+    STATUS_CHOICES = [
+        ('pending', 'Pending',),
+        ('approved', 'Approved',),
+        ('rejected', 'Rejected',),
+    ]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -30,6 +36,12 @@ class Booking(models.Model):
     time = models.TimeField()
     message = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='pending'
+    )
+    status_message = models.TextField(blank=True)
 
     is_approved = models.BooleanField(default=False)
 

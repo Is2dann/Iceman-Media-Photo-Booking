@@ -31,6 +31,12 @@ def book_photoshoot(request):
     return render(request, 'booking/booking.html', {'form': form})
 
 
+@login_required
+def my_bookings(request):
+    bookings = Booking.objects.filter(user=request.user).order_by('-date')
+    return render(request, 'booking/my_bookings.html', {'bookings': bookings})
+
+
 def get_booked_dates(request):
     dates = Booking.objects.values_list('date', flat=True)
     unique_dates = list(set(dates))  # Remove duplicates

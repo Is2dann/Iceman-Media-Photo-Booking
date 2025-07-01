@@ -7,12 +7,16 @@ from .models import Booking
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     list_display = (
-        'user', 'full_name', 'email',
-        'phone', 'photoshoot_type', 'date', 'time',
-        'is_approved', 'created_on'
+        'full_name', 'photoshoot_type',
+        'message', 'date', 'time',
+        'status', 'status_message',
+        'created_on'
     )
-    list_filter = ('date', 'photoshoot_type', 'is_approved')
-    # This way bookings can be approved straight from admin table
+    list_filter = ('status', 'date', 'photoshoot_type', 'is_approved')
+    # This way bookings can be approved and messaged 
+    # straight from admin table, don't need to open them.
     list_editable = (
-        'is_approved',)
+        'status',
+        'status_message'
+    )
     ordering = ('-date',)
