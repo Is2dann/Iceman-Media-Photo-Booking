@@ -27,7 +27,10 @@ class Booking(models.Model):
     message = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
+    is_approved = models.BooleanField(default=False)
+
     class Meta:
+        ordering = ['-date']
         unique_together = ('date', 'time')  # This prevents double booking
 
     def __str__(self):
