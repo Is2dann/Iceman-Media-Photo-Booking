@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<h2 class="text-center mb-4">Book a Photoshoot</h2>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <form method="POST" class="p-4 border rounded bg-dark text-light">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-custom mt-3">Submit Booking</button>
+        </form>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<!-- This fetches booked dates from the backend then disables them in the date picker -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("{% url 'booked_dates' %}")
+            .then(response => response.json())
+            .then(data => {
+                const bookedDates = data.booked_dates;
+                flatpickr("input[name='date']", {
+                    minDate: "today",
+                    dateFormat: "Y-m-d",
+                    disable: bookedDates
+                });
+                
+                flatpickr("input[name='time']", {
+                    enableTime: true,
+                    noCalendar: true,
+                    dateFormat: "H:i",
+                    time_24hr: true,
+                    minuteIncrement: 15
+                });
+            });
+        });
+    </script>
+
+{% endblock %}

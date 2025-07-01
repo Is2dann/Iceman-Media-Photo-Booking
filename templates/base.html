@@ -1,8 +1,10 @@
 {% load static %}
 
 {% url 'index' as index_url %}
+{% url 'about' as about_url %}
 {% url 'portfolio' as portfolio_url %}
-{% url 'account_login' as login.url %}
+{% url 'services' as services_url %}
+{% url 'book_photoshoot' as book_photoshoot_url %}
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -28,7 +30,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}">Iceman Media Photography</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -41,12 +45,25 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == index_url %}active{% endif %}" href="{% url 'index' %}">Home</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == about_url %}active{% endif %}" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == portfolio_url %}active{% endif %}" href="{% url 'portfolio' %}">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == contact_url %}active{% endif %}" href="#">Contact</a>
+                    </li>
                     {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact & Booking</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == services_url %}active{% endif %}" href="{% url 'services' %}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == book_photoshoot_url %}active{% endif %}" href="{% url 'book_photoshoot' %}">Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
@@ -86,22 +103,22 @@
             <ul class="list-unstyled d-flex justify-content-center mb-4">
                 <li class="mx-3">
                     <a href="https://www.instagram.com/iceman_media" target="_blank" class="social-link">
-                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-instagram ms-3 fa-2x"></i>
                     </a>
                 </li>
                 <li class="mx-3">
                     <a href="https://www.facebook.com/" target="_blank" class="social-link">
-                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook ms-3 fa-2x"></i>
                     </a>
                 </li>
                 <li class="mx-3">
                     <a href="https://www.linkedin.com/in/daniel-bodnar-35b0b3296/" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-linkedin ms-3 fa-2x"></i>
                     </a>
                 </li>
                 <li class="mx-3">
                     <a href="https://www.youtube.com/@iceman_media" target="_blank" class="social-link">
-                        <i class="fab fa-youtube"></i>
+                        <i class="fab fa-youtube ms-3 fa-2x"></i>
                     </a>
                 </li>
             </ul>

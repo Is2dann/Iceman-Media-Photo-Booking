@@ -23,6 +23,7 @@ urlpatterns = [
     path('about/', include('about.urls')),
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
+    path('booking/', include('booking.urls')),
     # this path ensures favicon will show on the live website
     # (from stackoverflow)
     path('favicon.ico', RedirectView.as_view(
