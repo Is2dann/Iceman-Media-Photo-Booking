@@ -10,9 +10,12 @@ class BookingForm(forms.ModelForm):
     """
     class Meta:
         model = Booking
-        fields = ['photoshoot_type', 'date', 'time', 'message']
+        fields = [
+            'full_name', 'email', 'phone',
+            'photoshoot_type', 'date', 'time', 'message'
+        ]
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
             'time': forms.TimeInput(attrs={'type': 'time'}),
-            'message': forms.Textarea(attrs={'rows': 4}),
+            'message': forms.Textarea(attrs={'rows': 3}),
         }

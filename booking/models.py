@@ -21,7 +21,11 @@ class Booking(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    photoshoot_type = models.CharField(max_length=50, choices=PHOTOSHOOT_CHOICES)
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20, blank=True)
+    photoshoot_type = models.CharField(
+        max_length=50, choices=PHOTOSHOOT_CHOICES)
     date = models.DateField()
     time = models.TimeField()
     message = models.TextField(blank=True)
