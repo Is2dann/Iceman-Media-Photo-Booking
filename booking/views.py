@@ -26,6 +26,8 @@ def book_photoshoot(request):
                     request,
                     "Your booking request has been submitted. I endeavor to respond within 2 days.")
                 return redirect('book_photoshoot')
+        else:
+            print("Form errors:", form.errors)
     else:
         form = BookingForm()
 
