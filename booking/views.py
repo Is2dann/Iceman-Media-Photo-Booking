@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
 from django.http import JsonResponse
 from .forms import BookingForm
@@ -41,3 +42,9 @@ def get_booked_dates(request):
     dates = Booking.objects.values_list('date', flat=True)
     unique_dates = list(set(dates))  # Remove duplicates
     return JsonResponse({'booked_dates': unique_dates})
+
+
+@staff_member_required
+def manage_bookings(request):
+    bookings = Booking.objects.all().order_by('-date', '-time')
+    return render(request, 'booking/manage_bookings.html', {'bookings': bookings})

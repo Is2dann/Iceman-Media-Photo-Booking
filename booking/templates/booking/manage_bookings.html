@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">Manage Bookings</h2>
+
+{% if bookings %}
+    <div class="table-responsive">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.user.username }}</td>
+                        <td>{{ booking.full_name }}</td>
+                        <td>{{ booking.email }}</td>
+                        <td>{{ booking.date }}</td>
+                        <td>{{ booking.time }}</td>
+                        <td>{{ booking.photoshoot_type }}</td>
+                        <td class="{% if booking.status == 'approved' %}text-success{% elif booking.status == 'rejected' %}text-danger{% else %}text-warning{% endif %}">
+                            {{ booking.get_status_display }}
+                        </td>
+                        <td>{{ booking.status_message|default:"–" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>No bookings found.</p>
+{% endif %}
+
+{% endblock %}

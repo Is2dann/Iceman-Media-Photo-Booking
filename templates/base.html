@@ -38,10 +38,11 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
-                        <span class="navbar-user">Hi, {{ user.username }}</span>
-                    {% else %}
-                        <span class="navbar-user">Hi, stranger.</span>
+                            <span class="navbar-user">Hi, {{ user.username }}</span>
+                        {% else %}
+                            <span class="navbar-user">Hi, stranger.</span>
                     {% endif %}
+
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == index_url %}active{% endif %}" href="{% url 'index' %}">Home</a>
                     </li>
@@ -54,22 +55,28 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == contact_url %}active{% endif %}" href="#">Contact</a>
                     </li>
+
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == services_url %}active{% endif %}" href="{% url 'services' %}">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == book_photoshoot_url %}active{% endif %}" href="{% url 'book_photoshoot' %}">Booking</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == my_bookings_url %}active{% endif %}" href="{% url 'my_bookings' %}">My Bookings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == services_url %}active{% endif %}" href="{% url 'services' %}">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == book_photoshoot_url %}active{% endif %}" href="{% url 'book_photoshoot' %}">Booking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == my_bookings_url %}active{% endif %}" href="{% url 'my_bookings' %}">My Bookings</a>
+                        </li>
+                            {% if user.is_authenticated and user.is_staff %}
+                                <li class="nav-item">
+                                    <a class="nav-link {% if request.path == manage_bookings_url %}active{% endif %}" href="{% url 'manage_bookings' %}">Manage Bookings</a>
+                                </li>
+                            {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
                     {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
                     {% endif %}
                 </ul>
             </div>
