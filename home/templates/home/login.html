@@ -3,24 +3,24 @@
 
 {% block content %}
 
-
-<div class="row justify-content-center">
-    <div class="col-md-6 col-lg-5">
-        <div class="registration-section p-4">
-            <h2 class="text-center mb-4">Welcome Back, Friend!</h2>
-            <p class="text-center mb-4">Login to manage or book your session.</p>
-            
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="registration-section p-4">
+                <h2 class="text-center mb-4">Welcome Back, Friend!</h2>
+                <p class="text-center mb-4">Login to manage or book your session.</p>
                 
-                <div class="text-center">
-                    <button type="submit" class="btn btn-custom">Login</button>
-                </div>
-            </form>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-custom">Login</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
+</section>
 
 {% endblock %}

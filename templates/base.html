@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iceman Media Photography & Booking</title>
     <!-- Bootstrap -->
@@ -38,9 +38,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
-                            <div class="navbar-user">Hi, {{ user.username }}</div>
+                            <li class="navbar-user">Hi, {{ user.username }}</li>
                         {% else %}
-                            <div class="navbar-user">Hi, stranger.</div>
+                            <li class="navbar-user">Hi, stranger.</li>
                     {% endif %}
 
                     <li class="nav-item">
@@ -98,12 +98,12 @@
     </div>
     {% endif %}
 
-    <section class="container py-5">
+    
 
         {% block content %}
         {% endblock %}
 
-    </section>
+    
 
     <footer class="footer py-5 mt-5">
         <div class="container text-center">

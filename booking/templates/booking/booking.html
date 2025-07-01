@@ -3,17 +3,18 @@
 
 {% block content %}
 
-
-<h2 class="text-center mb-4">Book a Photoshoot</h2>
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <form method="POST" class="p-4 border rounded bg-dark text-light">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-custom mt-3">Submit Booking</button>
-        </form>
+<section class="container py-5">
+    <h2 class="text-center mb-4">Book a Photoshoot</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="POST" class="p-4 border rounded bg-dark text-light">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-custom mt-3">Submit Booking</button>
+            </form>
+        </div>
     </div>
-</div>
+</section>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
